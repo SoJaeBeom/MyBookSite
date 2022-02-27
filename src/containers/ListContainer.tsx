@@ -1,9 +1,10 @@
-import { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import List from "../components/List";
-import { BookType, RootState } from "../types";
+import { useCallback } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import List from '../components/List'
+import { BookType, RootState } from '../types'
 import { getBooks as getBooksSagaStart } from '../redux/modules/books'
 import { logout as logoutSagaStart } from '../redux/modules/auth'
+import { push } from 'connected-react-router'
 
 export default function ListContainer() {
   const books = useSelector<RootState, BookType[] | null>(
@@ -24,6 +25,19 @@ export default function ListContainer() {
   const logout = useCallback(() => {
     dispatch(logoutSagaStart())
   }, [dispatch])
+  
+  const goAdd = useCallback(() => {
+    dispatch(push('/add'))
+  }, [dispatch])
 
-  return <List books={books} loading={loading} getBooks={getBooks} error={error} logout={logout} />
+  return (
+    <List
+      books={books}
+      loading={loading}
+      getBooks={getBooks}
+      error={error}
+      logout={logout}
+      goAdd={goAdd}
+    />
+  )
 }

@@ -1,5 +1,5 @@
-import { RouterState } from "connected-react-router";
-import { AnyAction, Reducer } from "redux";
+import { RouterState } from 'connected-react-router'
+import { AnyAction, Reducer } from 'redux'
 
 export type LoginReqType = {
   email: string
@@ -29,5 +29,12 @@ export interface BookType {
   title: string
   author: string
   createdAt: string
+  url: string
+}
+
+export interface BookReqType {
+  title: string
+  message: string
+  author: string
   url: string
 }
